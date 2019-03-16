@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Home from '@/Home';
-import Error404 from '@/Error404';
+import Home from 'app/components/Home';
+import Error404 from 'app/components/Error404';
 class RouterOutlet extends React.Component {
   render() {
     return (
