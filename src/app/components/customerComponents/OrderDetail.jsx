@@ -6,60 +6,63 @@ class OrderDetail extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            orders: []
+            orderId: this.props.match.params.userId,
         };
     }
 
     componentDidMount() {
-        fetch("https://api.github.com/users")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    console.log(result);
-                    this.setState({
-                        isLoaded: true,
-                        orders: result
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+        Promise.all([
+            fetch("https://api.github.com/users/"+this.state.orderId),
+            fetch("https://api.github.com/users/"+this.state.orderId+"/followers")
+        ])
+            .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
+            .then(([data1, data2]) => {
+                this.setState({
+                isLoaded: true,
+                orderInfo: data1,
+                products: data2,
+            });
+            },
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+        });
     }
 
     render() {
-        const { error, isLoaded, orders } = this.state;
+        const { error, isLoaded, orderInfo, products} = this.state;
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div className="container"><div>Loading...</div></div>;
         } else {
             return (
+                <div className="container">
+                <div>
+                    <h3>Order ID: {orderInfo.id}</h3>
+                    <p>Status: </p>
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Order ID</th>
-                        <th>Order Name</th>
-                        <th>Status</th>
+                        <th>Product ID</th>
+                        <th>Product Name</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {orders.map(o => (
-                        <tr key={o.id}>
-                            <td><a>{o.id}</a></td>
-                            <td>{o.login}</td>
+                    {products.map(p => (
+                        <tr key={p.login}>
+                            <td><a>{p.login}</a></td>
                             <td>john@example.com</td>
                         </tr>
                     ))}
                     </tbody>
-                </table>)
+                </table>
+            </div>
+                </div>)
         }
+
     }
 
 }

@@ -35,11 +35,12 @@ class OrderListing extends React.Component {
     render() {
         const { error, isLoaded, orders } = this.state;
         if (error) {
-            return <div>Error: {error.message}</div>;
+            return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return <div className="container"><div>Loading...</div></div>;
         } else {
             return (
+                <div className="container">
                 <table class="table table-striped">
                     <thead>
                     <tr>
@@ -51,13 +52,14 @@ class OrderListing extends React.Component {
                     <tbody>
                         {orders.map(o => (
                             <tr key={o.id}>
-                                <td><a href={"order/"+o.id}>{o.id}</a></td>
+                                <td><a href={"order/"+o.login}>{o.id}</a></td>
                                 <td>{o.login}</td>
                                 <td>john@example.com</td>
                             </tr>
                             ))}
                     </tbody>
-                </table>)
+                </table>
+                </div>)
         }
     }
 

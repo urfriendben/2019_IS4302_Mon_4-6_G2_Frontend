@@ -2,6 +2,10 @@ import * as React from 'react';
 import 'sass/components/customerComponents/home.scss';
 import carousell1 from 'img/carousell1.jpg';
 import carousell2 from 'img/carousell2.jpeg';
+import card1 from 'img/card1.jpg';
+import card2 from 'img/card2.jpg';
+import card3 from 'img/card3.jpg';
+
 class Home extends React.Component {
   render() {
     return (
@@ -27,10 +31,43 @@ class Home extends React.Component {
                     <span className="sr-only">Next</span>
                 </a>
             </div>
-            <div class="row">
-                <div class="col-4 col1" ></div>
-                <div className="col-4 col2"></div>
-                <div className="col-4 col3"></div>
+
+
+
+            <div class="container">
+                <p className="product-title">Products</p>
+                <div class="row">
+                    <div class="col-md-4 col1" >
+                        <div className="card" >
+                            <img className="card-img-top" src={card1} alt="Card image cap"></img>
+                                <div className="card-body">
+                                    <h5 className="card-title">Product title</h5>
+                                    <p className="card-text">Sir joy northward sportsmen education. Discovery incommode earnestly no he commanded if. Put still any about manor heard. </p>
+                                    <a href="#" className="btn btn-primary">Read More</a>
+                                </div>
+                        </div>
+                    </div>
+                    <div className="col-md-4 col2">
+                        <div className="card" >
+                            <img className="card-img-top" src={card2} alt="Card image cap"></img>
+                                <div className="card-body">
+                                    <h5 className="card-title">Product title</h5>
+                                    <p className="card-text">Sir joy northward sportsmen education. Discovery incommode earnestly no he commanded if. Put still any about manor heard. </p>
+                                    <a href="#" className="btn btn-primary">Read More</a>
+                                </div>
+                        </div>
+                    </div>
+                    <div className="col-md-4 col3">
+                        <div className="card">
+                            <img className="card-img-top" src={card3} alt="Card image cap"></img>
+                                <div className="card-body">
+                                    <h5 className="card-title">Product title</h5>
+                                    <p className="card-text">Sir joy northward sportsmen education. Discovery incommode earnestly no he commanded if. Put still any about manor heard. </p>
+                                    <a href="#" className="btn btn-primary">Read More</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
