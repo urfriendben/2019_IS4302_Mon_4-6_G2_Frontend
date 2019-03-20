@@ -11,12 +11,14 @@ class RouterOutlet extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <AppNavbar />
-        <Switch>
-          <Route path="/" component={Login} exact={true}/>
-          <Route path="/auth" component={Auth} />
-          <Route component={Error404}/>
-        </Switch>
+        <div>
+          <AppNavbar />
+          <Switch>
+            <Route path="/" component={Login} exact={true}/>
+            <Route path="/auth" component={Auth} />
+            <Route component={Error404}/>
+          </Switch>
+        </div>
       </BrowserRouter>
     );
   }

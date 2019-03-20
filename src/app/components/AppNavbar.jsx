@@ -18,15 +18,16 @@ class AppNavbar extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.location.pathname.includes('admin')) {
+    // if (this.props.location.pathname.includes('admin')) {
       this.setState({show: false});
-    }
+    // }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      if (this.props.location.pathname.includes('admin')) {
-        this.setState({show: false});
+      // if (this.props.location.pathname.includes('admin')) {
+      if (this.props.location.pathname.includes('auth')) {
+        this.setState({show: true});
       } else {
         this.setState({show: true});
       }
