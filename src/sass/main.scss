@@ -9,16 +9,3 @@
 
 // Components
 @import './components/index';
-
-@media (min-width: 768px)
-{
-  html {
-    display: flex;
-    justify-content: center;
-    background-color: #736598;
-  }
-  
-  body {
-    width: 768px;
-  }
-}
