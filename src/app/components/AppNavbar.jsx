@@ -14,18 +14,18 @@ class AppNavbar extends React.Component {
 
   logout = () => {
     sessionStorage.setItem('loggedIn', null);
-    window.location.href = '/admin';
+    window.location.href = '/';
   }
 
   componentDidMount() {
-    if (this.props.location.pathname.endsWith('/admin')) {
+    if (this.props.location.pathname.includes('admin')) {
       this.setState({show: false});
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      if (this.props.location.pathname.endsWith('/admin')) {
+      if (this.props.location.pathname.includes('admin')) {
         this.setState({show: false});
       } else {
         this.setState({show: true});

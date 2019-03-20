@@ -18,7 +18,7 @@ class Login extends React.Component {
         email: this.email,
         role: this.email === 'supplier' ? 'SUPPLIER' : 'SHIPPING'
       }));
-      this.props.history.push('/admin/auth');
+      this.props.history.push('/auth');
     }
 
     render() {
