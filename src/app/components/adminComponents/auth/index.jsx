@@ -5,20 +5,16 @@ import Listing from './Listing';
 class Auth extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            loggedIn: sessionStorage.getItem('loggedIn')
-        };
     }
 
     componentDidMount() {
-        const { loggedIn } = this.state;
-        if (!loggedIn) {
-          window.location.href = '/admin';
+        const loggedIn = sessionStorage.getItem('loggedIn');
+        if (loggedIn === 'null' || !loggedIn) {
+          window.location.href = '/';
         }
     }
 
     render() {
-        const {} = this.state;
         return (
           <div>
             <Listing />

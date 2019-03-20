@@ -7,7 +7,7 @@ class AppNavbar extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-          loggedIn: sessionStorage.getItem('loggedIn'),
+          // loggedIn: sessionStorage.getItem('loggedIn'),
           show: true
       };
   }
@@ -19,7 +19,10 @@ class AppNavbar extends React.Component {
 
   componentDidMount() {
     // if (this.props.location.pathname.includes('admin')) {
+    const loggedIn = sessionStorage.getItem('loggedIn');
+    if (loggedIn === 'null' || !loggedIn) {
       this.setState({show: false});
+    }
     // }
   }
 
@@ -46,9 +49,9 @@ class AppNavbar extends React.Component {
 				<nav className="navbar navbar-expand-lg navbar-light bg-light">
 					<img src={logo}></img>
           {
-            !loggedIn ?
-              <a className="navbar-brand" href="/">Online Shopping Tool</a>
-            :
+            // !loggedIn ?
+            //   <a className="navbar-brand" href="/">Online Shopping Tool</a>
+            // :
               <a className="navbar-brand" href="/admin/auth">Online Shopping Tool</a>
           }
 					<button className="navbar-toggler" type="button" data-toggle="collapse"
@@ -64,10 +67,10 @@ class AppNavbar extends React.Component {
 							{/*</li>*/}
 							<li className="nav-item">
                 {
-                  !loggedIn ?
-                    <a className="nav-link" href="/customer/viewAllOrder">Orders</a>
-                  :
-                    <a className="nav-link" href="/admin/auth">Orders</a>
+                  // !loggedIn ?
+                  //   <a className="nav-link" href="/customer/viewAllOrder">Orders</a>
+                  // :
+                    <a className="nav-link" href="/auth">Orders</a>
                 }
 							</li>
 							<li className="nav-item dropdown">
@@ -82,9 +85,9 @@ class AppNavbar extends React.Component {
 							</li>
               <li className="nav-item">
                 {
-                  !loggedIn ?
-                    null
-                  :
+                  // !loggedIn ?
+                  //   null
+                  // :
                     <a className="nav-link" onClick={this.logout}>Logout</a>
                 }
 							</li>
@@ -93,13 +96,13 @@ class AppNavbar extends React.Component {
 							{/*</li>*/}
 						</ul>
 						<form className="form-inline my-2 my-lg-0">
-							{ !loggedIn && <input className="form-control mr-sm-2" type="search" placeholder="Search"
-								   aria-label="Search"></input> }
-							{ !loggedIn && <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> }
-							{ !loggedIn && <button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Log In
-							</button> }
-							{ !loggedIn && <button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Sign Up
-							</button> }
+							{ /*!loggedIn && <input className="form-control mr-sm-2" type="search" placeholder="Search"
+								   aria-label="Search"></input>*/ }
+							{ /*!loggedIn && <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>*/ }
+							{ /*!loggedIn && <button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Log In
+							</button>*/ }
+							{ /*!loggedIn && <button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Sign Up
+							</button>*/ }
 						</form>
 
 					</div>
