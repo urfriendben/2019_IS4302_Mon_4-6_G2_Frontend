@@ -23,8 +23,8 @@ class Login extends React.Component {
 
     render() {
         return (
-          <div style={{height:'100vh',width:'100vw',display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden'}}>
-            <Jumbotron style={{width:'100vw',borderRadius:0}}>
+          <div style={{height:'100vh',width:'100%',display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden'}}>
+            <Jumbotron style={{width:'100%',borderRadius:0}}>
               <Form>
                 <FormGroup>
                   <Label for="exampleEmail">Email</Label>
