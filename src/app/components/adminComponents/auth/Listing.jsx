@@ -4,6 +4,7 @@ import EndorseShipping from './EndorseShipping';
 class Listing extends React.Component {
     constructor(props) {
         const loggedIn = JSON.parse(sessionStorage.getItem('loggedIn'));
+        
         super(props);
         this.state = {
             error: null,
