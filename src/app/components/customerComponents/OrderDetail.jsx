@@ -6,14 +6,14 @@ class OrderDetail extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            orderId: this.props.match.params.userId,
+            productId: this.props.match.params.userId,
         };
     }
 
     componentDidMount() {
         Promise.all([
-            fetch("https://api.github.com/users/"+this.state.orderId),
-            fetch("https://api.github.com/users/"+this.state.orderId+"/followers")
+            fetch("https://api.github.com/users/"+this.state.productId),
+            fetch("https://api.github.com/users/"+this.state.productId+"/followers")
         ])
             .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
             .then(([data1, data2]) => {
@@ -41,7 +41,7 @@ class OrderDetail extends React.Component {
             return (
                 <div className="container">
                 <div>
-                    <h3>Order ID: {orderInfo.id}</h3>
+                    <h3>Product ID: {orderInfo.id}</h3>
                     <p>Status: </p>
                 <table class="table table-striped">
                     <thead>

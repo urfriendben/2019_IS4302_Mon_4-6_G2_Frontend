@@ -1,4 +1,9 @@
 import * as React from 'react';
+import card1 from 'img/card1.jpg';
+import card2 from 'img/card2.jpg';
+import card3 from 'img/card3.jpg';
+import 'sass/components/customerComponents/home.scss';
+
 class ProductListing extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +19,6 @@ class ProductListing extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result);
                     this.setState({
                         isLoaded: true,
                         orders: result
@@ -38,29 +42,26 @@ class ProductListing extends React.Component {
             return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {
             return <div className="container"><div>Loading...</div></div>;
-        } else {
+        } else {        
             return (
-                <div className="container">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Order Name</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map(o => (
-                            <tr key={o.id}>
-                                <td><a href={"order/"+o.login}>{o.id}</a></td>
-                                <td>{o.login}</td>
-                                <td>john@example.com</td>
-                            </tr>
-                            ))}
-                    </tbody>
-                </table>
-                </div>)
-        }
+                <div>
+                    {orders.map(item => (
+                            
+                            <div className="card" >
+                            <img className="card-img-top" src={card3} alt="Card image cap"></img>
+                                <div className="card-body">
+                                   <h5 className="card-title">{item.id}</h5>
+                                    <p className="card-text">Sir joy northward sportsmen education. Discovery incommode earnestly no he commanded if. Put still any about manor heard. </p>
+                                   <a href={"customer/product/"+item.login} className="btn btn-primary">Read More</a>
+                                 </div>
+                             </div>
+                         
+                            ))
+                            
+                            }
+                </div>
+            );
+            }
     }
 
 }

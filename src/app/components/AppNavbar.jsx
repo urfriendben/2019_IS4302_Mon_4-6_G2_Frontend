@@ -5,7 +5,7 @@ import logo from 'img/logo.png';
 class AppNavbar extends React.Component {
   render() {
     return (
-			<header>
+			
 				<nav className="navbar navbar-expand-lg navbar-light bg-light">
 					<img src={logo}></img>
 					<a className="navbar-brand" href="/">Online Shopping Tool</a>
@@ -35,9 +35,7 @@ class AppNavbar extends React.Component {
 									<a className="dropdown-item" href="#">Special Offer</a>
 								</div>
 							</li>
-							{/*<li className="nav-item">*/}
-								{/*<a className="nav-link disabled" href="#">Disabled</a>*/}
-							{/*</li>*/}
+				
 						</ul>
 						<form className="form-inline my-2 my-lg-0">
 							<input className="form-control mr-sm-2" type="search" placeholder="Search"
@@ -48,10 +46,12 @@ class AppNavbar extends React.Component {
 							<button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Sign Up
 							</button>
 						</form>
-
+						<button type="button" class="btn btn-outline-success my-2 my-sm-0">
+						<i class='fas fa-shopping-cart'></i> Shopping Cart
+						</button>
 					</div>
 				</nav>
-			</header>
+			
     );
   }
 }

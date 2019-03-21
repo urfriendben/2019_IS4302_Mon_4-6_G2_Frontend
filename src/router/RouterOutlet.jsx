@@ -10,13 +10,12 @@ class RouterOutlet extends React.Component {
   render() {
     return (
       <BrowserRouter>
-
         <Switch>
           <Route path="/" component={Home} exact={true}/>
           <Route path="/customer/viewAllOrder" component={OrderListing} exact={true}/>
           <Route path="/customer/order/:orderId" component={OrderDetail} exact={true}/>
           <Route path="/customer/viewAllProduct" component={ProductListing} exact={true}/>
-          <Route path="/customer/order/:productId" component={ProductDetail} exact={true}/>
+          <Route path="/customer/product/:productId" component={ProductDetail} exact={true}/>
           <Route component={Error404}/>
         </Switch>
       </BrowserRouter>

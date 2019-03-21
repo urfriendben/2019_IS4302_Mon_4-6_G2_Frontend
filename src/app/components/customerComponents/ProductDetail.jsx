@@ -6,33 +6,35 @@ class ProductDetail extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            ord2erId: this.props.match.params.userId,
+            productInfo: this.props.match.params.userId,
         };
     }
 
     componentDidMount() {
-        Promise.all([
-            fetch("https://api.github.com/users/"+this.state.orderId),
-            fetch("https://api.github.com/users/"+this.state.orderId+"/followers")
-        ])
-            .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-            .then(([data1, data2]) => {
-                this.setState({
-                isLoaded: true,
-                orderInfo: data1,
-                products: data2,
-            });
-            },
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-        });
+        fetch("https://api.github.com/users/"+this.state.productInfo)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                    this.setState({
+                        isLoaded: true,
+                        productInfo: result
+                    });
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
     }
 
     render() {
-        const { error, isLoaded, orderInfo, products} = this.state;
+        const { error, isLoaded, productInfo} = this.state;
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {
@@ -41,24 +43,11 @@ class ProductDetail extends React.Component {
             return (
                 <div className="container">
                 <div>
-                    <h3>Product ID: {orderInfo.id}</h3>
-                    <p>Status: </p>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Product ID</th>
-                        <th>Product Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {products.map(p => (
-                        <tr key={p.login}>
-                            <td><a>{p.login}</a></td>
-                            <td>john@example.com</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
+                    <h3>Product ID: {productInfo.node_id}</h3>
+                    <p>Name: </p>
+                    <p>Type: </p>
+                    <p>Quantity: </p>
+                    <p>Price: </p>
             </div>
                 </div>)
         }
