@@ -7,6 +7,7 @@ import OrderListing from 'app/components/customerComponents/OrderListing';
 import ProductListing from 'app/components/customerComponents/ProductListing';
 import ProductDetail from 'app/components/customerComponents/ProductDetail';
 import ShoppingCart from 'app/components/customerComponents/ShoppingCart';
+import MakeOrder from 'app/components/customerComponents/MakeOrder';
 import Error404 from 'app/components/Error404';
 class RouterOutlet extends React.Component {
   render() {
@@ -20,6 +21,7 @@ class RouterOutlet extends React.Component {
           <Route path="/customer/viewAllProduct" component={ProductListing} exact={true}/>
           <Route path="/customer/product/:productId" component={ProductDetail} exact={true}/>
           <Route path="/customer/shoppingCart" component={ShoppingCart} exact={true}/>
+          <Route path="/customer/makeOrder" component={MakeOrder} exact={true}/>
           <Route component={Error404}/>
         </Switch>
       </BrowserRouter>

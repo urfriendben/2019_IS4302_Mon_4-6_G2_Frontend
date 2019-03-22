@@ -7,19 +7,21 @@ class ProductDetail extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            productInfo: this.props.match.params.userId,
+            productInfo: this.props.match.params.productId,
             quantity: 1, 
+            supplierId: null,
         };
     }
 
     componentDidMount() {
-        fetch("https://api.github.com/users/"+this.state.productInfo)
+        fetch("https://jsonplaceholder.typicode.com/posts/"+this.state.productInfo)
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        productInfo: result
+                        productInfo: result,
+                        supplierId: result.userId, 
                     });
                 },
                 // Note: it's important to handle errors here
@@ -60,10 +62,11 @@ class ProductDetail extends React.Component {
             return (
                 <div className="container">
                     <div>
-                        <h3>Product ID: {productInfo.node_id}</h3>
-                        <p>Name: </p>
+                        <h3>Product ID: {productInfo.id}</h3>
+                        <p>Name: {productInfo.title}</p>
                         <p>Type: </p>
                         <p>Price: </p>
+                        <p>Supplier: {productInfo.userId}</p>
                     </div>
                     
                     

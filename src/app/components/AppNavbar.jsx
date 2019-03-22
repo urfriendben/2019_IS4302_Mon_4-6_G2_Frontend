@@ -46,7 +46,7 @@ class AppNavbar extends React.Component {
 							<button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Sign Up
 							</button>
 						</form>
-						<a href={"/customer/shoppingCart"} className="btn btn-outline-success my-2 my-sm-0">
+						<a href={"/customer/shoppingCart"} className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}>
 						<i className='fas fa-shopping-cart'></i> Shopping Cart
 						</a>
 					</div>

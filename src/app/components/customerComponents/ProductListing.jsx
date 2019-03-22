@@ -15,7 +15,7 @@ class ProductListing extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://api.github.com/users")
+        fetch("https://jsonplaceholder.typicode.com/posts")
             .then(res => res.json())
             .then(
                 (result) => {
@@ -47,12 +47,12 @@ class ProductListing extends React.Component {
                 <div>
                     {orders.map(item => (
                             
-                            <div className="card" >
+                            <div className="card" key={item.id}>
                             <img className="card-img-top" src={card3} alt="Card image cap"></img>
                                 <div className="card-body">
                                    <h5 className="card-title">{item.id}</h5>
                                     <p className="card-text">Sir joy northward sportsmen education. Discovery incommode earnestly no he commanded if. Put still any about manor heard. </p>
-                                   <a href={"customer/product/"+item.login} className="btn btn-primary">Read More</a>
+                                   <a href={"customer/product/"+item.id} className="btn btn-primary">Read More</a>
                                  </div>
                              </div>
                          
