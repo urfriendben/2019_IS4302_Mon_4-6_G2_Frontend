@@ -1,4 +1,5 @@
 import * as React from 'react';
+import "sass/components/customerComponents/components.scss";
 
 class ProductDetail extends React.Component {
     constructor(props) {
@@ -7,6 +8,7 @@ class ProductDetail extends React.Component {
             error: null,
             isLoaded: false,
             productInfo: this.props.match.params.userId,
+            quantity: 1, 
         };
     }
 
@@ -15,7 +17,6 @@ class ProductDetail extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result);
                     this.setState({
                         isLoaded: true,
                         productInfo: result
@@ -33,6 +34,22 @@ class ProductDetail extends React.Component {
             )
     }
 
+    addItem = (pid, productInfo) => {
+        var item = JSON.parse(localStorage.getItem(pid));
+        if(item == 'undefined' || item == null) {
+            item = {quantity: this.state.quantity, product:productInfo};
+        }else{
+            item.quantity = (parseInt(this.state.quantity) + parseInt(item.quantity)).toString();
+        }
+        console.log(item, " has been added successfully!");
+        localStorage.setItem(pid, JSON.stringify(item));
+        alert("Added Successfully! Current you have "+item.quantity+" of this item in your shopping cart!");
+    }
+
+    handleChange = (event) => {
+        this.setState({quantity: event.target.value});
+      }
+
     render() {
         const { error, isLoaded, productInfo} = this.state;
         if (error) {
@@ -42,13 +59,18 @@ class ProductDetail extends React.Component {
         } else {
             return (
                 <div className="container">
-                <div>
-                    <h3>Product ID: {productInfo.node_id}</h3>
-                    <p>Name: </p>
-                    <p>Type: </p>
-                    <p>Quantity: </p>
-                    <p>Price: </p>
-            </div>
+                    <div>
+                        <h3>Product ID: {productInfo.node_id}</h3>
+                        <p>Name: </p>
+                        <p>Type: </p>
+                        <p>Price: </p>
+                    </div>
+                    
+                    
+                    <label>Quantity: </label>
+                        <input className="form-control mr-sm-2 quantity-input" placeholder="1" type="number" min="1" max={productInfo.length} onChange={this.handleChange}></input>
+                        <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.addItem(productInfo.id, productInfo)} style={{marginLeft: '10px'}}> Add To Cart</button>
+                    
                 </div>)
         }
 
