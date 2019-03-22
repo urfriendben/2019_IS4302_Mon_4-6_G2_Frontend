@@ -1,5 +1,6 @@
 import * as React from 'react';
 import SupplierProduct from 'app/components/customerComponents/SupplierProduct';
+import "sass/components/customerComponents/components.scss";
 
 class MakeOrder extends React.Component {
     constructor(props) {
@@ -26,9 +27,23 @@ class MakeOrder extends React.Component {
 
     confirm = () => {
         try{
-            
-        }catch(error){
-            alert(error);
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'post',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    order: this.state.products
+                  })
+               }) .then(response => response.json())
+               .then((json) => {
+                   console.log(json)
+                        this.props.history.push(
+                        {
+                            pathname: `/customer/shoppingCart`,
+                            data: 'Successfully placed the order! You can now view it in your order history.'
+                        });
+            });
+        }catch(e){
+            this.setState({error: e});
         }
     }
 
@@ -38,7 +53,7 @@ class MakeOrder extends React.Component {
         //     this.props.history.push(
         //         {
         //             pathname: `/customer/shoppingCart`,
-        //             data: 'Session expired! Please do not refresh the page while making the order.'
+        //             error: 'Session expired! Please do not refresh the page while making the order.'
         //         });
         //         return null;
         // }else{
@@ -48,7 +63,11 @@ class MakeOrder extends React.Component {
         //     } else {
   
                 return (
-                    <div className="container">
+                        <div className="container">
+                        { (error != null && error != 'undefined')
+            ? <div className="alert alert-danger" role="alert">{error}</div>
+            : <div></div>
+        }
                         {
                             Object.keys(products).map(supplierId => (
                                 <div key={supplierId}>

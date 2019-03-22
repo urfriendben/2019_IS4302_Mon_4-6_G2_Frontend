@@ -41,6 +41,7 @@ class OrderListing extends React.Component {
         } else {
             return (
                 <div className="container">
+                <h3>View Order History</h3>
                 <table className="table table-striped">
                     <thead>
                     <tr>

@@ -5,7 +5,8 @@ class ShoppingCart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            error: this.props.location.data,
+            error: this.props.location.error,
+            data: this.props.location.data,
             products: {}, // {productId: {quantity: this.state.quantity, product:productInfo}}
             selectedSupplier: {}, // {supplierId: {quantity: this.state.quantity, product:productInfo}}
             selectedProduct: {}, // {productId: {quantity: this.state.quantity, product:productInfo}}
@@ -55,7 +56,6 @@ class ShoppingCart extends React.Component {
 
     componentDidMount() {
         this.reloadProducts();
-        console.log(this.state.selectedSupplier)
         if (this.state.error){
             alert(this.state.error);
         }
@@ -84,8 +84,20 @@ class ShoppingCart extends React.Component {
             )
         }
         else{
+            var error = this.state.error;
+            var data = this.state.data;
             return (
                 <div className="container">
+                    { (error != null && error != 'undefined')
+        ? <div className="alert alert-danger" role="alert">{error}</div>
+        : <div></div>
+      }
+                        { (data != null && data != 'undefined')
+        ? <div className="alert alert-success">{data}</div>
+        : <div></div>
+      }
+                  
+                  
                 <table className="table table-striped">
                     <thead>
                     <tr>
