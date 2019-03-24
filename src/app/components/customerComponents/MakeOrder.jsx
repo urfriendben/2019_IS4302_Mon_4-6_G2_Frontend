@@ -25,6 +25,15 @@ class MakeOrder extends React.Component {
         return price;
     }
 
+    handleErrors = (response) => {
+        if (!response.ok) {
+            console.log(response);
+            throw Error(response.statusText);
+        }
+        
+        return response;
+    }
+
     confirm = () => {
         try{
             fetch('https://jsonplaceholder.typicode.com/posts', {
@@ -33,14 +42,18 @@ class MakeOrder extends React.Component {
                 body: JSON.stringify({
                     order: this.state.products
                   })
-               }) .then(response => response.json())
-               .then((json) => {
-                   console.log(json)
-                        this.props.history.push(
-                        {
-                            pathname: `/customer/shoppingCart`,
-                            data: 'Successfully placed the order! You can now view it in your order history.'
-                        });
+               }).then(this.handleErrors)
+               .then((res) => {
+                   console.log(res);
+                    this.props.history.push(
+                    {
+                        pathname: `/customer/shoppingCart`,
+                        data: 'Successfully placed the order! You can now view it in your order history.',
+                        object: this.state.products
+                    });
+            }).catch(function(error) {
+                console.log(error);
+                alert(error);
             });
         }catch(e){
             this.setState({error: e});

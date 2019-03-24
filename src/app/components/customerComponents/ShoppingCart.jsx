@@ -7,6 +7,7 @@ class ShoppingCart extends React.Component {
         this.state = {
             error: this.props.location.error,
             data: this.props.location.data,
+            object: this.props.location.object,
             products: {}, // {productId: {quantity: this.state.quantity, product:productInfo}}
             selectedSupplier: {}, // {supplierId: {quantity: this.state.quantity, product:productInfo}}
             selectedProduct: {}, // {productId: {quantity: this.state.quantity, product:productInfo}}
@@ -17,9 +18,20 @@ class ShoppingCart extends React.Component {
         this.setState({products: []});
     }
 
+    clearPartialLSOrdered = () => {
+        var l = this.state.object;
+        if (l != null && l != 'undefined'){
+            Object.keys(l).map(supplierId => {
+                Object.keys(l[supplierId]).map(productId => {
+                    delete localStorage[productId];
+                })
+            })
+        }
+    }
+
     clearPartialLS = () => {
-        Object.keys(this.state.selectedProduct).map(k => {
-            delete localStorage[k];
+        Object.keys(this.state.selectedProduct).map(productId => {
+            delete localStorage[productId];
         })
         this.reloadProducts();
     }
@@ -31,7 +43,7 @@ class ShoppingCart extends React.Component {
             this.props.history.push(
             {
                 pathname: `/customer/makeOrder`,
-                state: this.state.selectedSupplier // your data array of objects
+                state: this.state.selectedSupplier 
               });
             }
     }
@@ -47,7 +59,7 @@ class ShoppingCart extends React.Component {
         }else{
             delete ss[product.product.userId][product.product.id];
             delete sp[product.product.id];
-            if(ss[product.product.userId] == null){
+            if(ss[product.product.userId] == null || Object.keys(ss[product.product.userId]).length == 0){
                 delete ss[product.product.userId];
             }
         }
@@ -73,6 +85,7 @@ class ShoppingCart extends React.Component {
     }
 
     render() {
+        this.clearPartialLSOrdered();
         if(this.state.products.length == 0){
             return (
                 <div className="container">
@@ -123,7 +136,7 @@ class ShoppingCart extends React.Component {
                     </tbody>
                 </table>
                 <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.clearLS()} style={{marginRight: '10px'}}> Clear All Products</button>
-                <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.clearPartialLS()} style={{marginLeft: '10px'}}> Clear Selected Products</button>
+                <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.clearPartialLS()}> Clear Selected Products</button>
                 <a href={"/customer"} className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}>
 						Browse All Products
 					</a>
