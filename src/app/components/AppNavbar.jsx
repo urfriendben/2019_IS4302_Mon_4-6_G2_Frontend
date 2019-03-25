@@ -41,10 +41,10 @@ class AppNavbar extends React.Component {
 							<input className="form-control mr-sm-2" type="search" placeholder="Search"
 								   aria-label="Search"></input>
 								<button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-							<button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Log In
+							{/* <button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Log In
 							</button>
 							<button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Sign Up
-							</button>
+							</button> */}
 						</form>
 						<a href={"/customer/shoppingCart"} className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}>
 						<i className='fas fa-shopping-cart'></i> Shopping Cart

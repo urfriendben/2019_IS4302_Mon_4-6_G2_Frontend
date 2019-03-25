@@ -52,15 +52,15 @@ class ShoppingCart extends React.Component {
         var ss = this.state.selectedSupplier;
         var sp = this.state.selectedProduct;
         if(checked){
-            if(ss[product.product.userId] == null || ss[product.product.userId] == 'undefined'){ss[product.product.userId] = {}};
-            ss[product.product.userId][product.product.id] = product;
-            sp[product.product.id] = product;
+            if(ss[product.product.supplier] == null || ss[product.product.supplier] == 'undefined'){ss[product.product.supplier] = {}};
+            ss[product.product.supplier][product.product.goodsId] = product;
+            sp[product.product.goodsId] = product;
             
         }else{
-            delete ss[product.product.userId][product.product.id];
-            delete sp[product.product.id];
-            if(ss[product.product.userId] == null || Object.keys(ss[product.product.userId]).length == 0){
-                delete ss[product.product.userId];
+            delete ss[product.product.supplier][product.product.goodsId];
+            delete sp[product.product.goodsId];
+            if(ss[product.product.supplier] == null || Object.keys(ss[product.product.supplier]).length == 0){
+                delete ss[product.product.supplier];
             }
         }
         this.setState({selectedSupplier:ss, selectedProduct:sp});
@@ -125,12 +125,12 @@ class ShoppingCart extends React.Component {
                         {Object.keys(this.state.products).map(k => {
                             var p = this.state.products[k];
                             return (
-                            <tr key={p.product.id}>
+                            <tr key={p.product.goodsId}>
                                 <td><input type="checkbox"  onChange={(e) => this.checkbox(p, e.target.checked)} className="form-check-input check-product" /></td>
-                                <td><a href={"product/"+p.product.id}>{p.product.id}</a></td>
-                                <td>{p.product.userId}</td>
+                                <td><a href={"product/"+p.product.goodsId}>{p.product.goodsId}</a></td>
+                                <td>{p.product.name}</td>
                                 <td>{p.quantity}</td>
-                                <td>{p.quantity * 2}</td>
+                                <td>{p.product.price * p.quantity}</td>
                             </tr>
                             )})}
                     </tbody>

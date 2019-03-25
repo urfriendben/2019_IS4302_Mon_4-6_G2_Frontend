@@ -15,13 +15,13 @@ class ProductListing extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://jsonplaceholder.typicode.com/posts")
+        fetch("http://localhost:8010/goods")
             .then(res => res.json())
             .then(
                 (result) => {
                     this.setState({
                         isLoaded: true,
-                        orders: result
+                        orders: result.data
                     });
                 },
                 // Note: it's important to handle errors here
@@ -37,6 +37,7 @@ class ProductListing extends React.Component {
     }
 
     render() {
+        console.log(this.state.orders);
         const { error, isLoaded, orders } = this.state;
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
@@ -46,13 +47,12 @@ class ProductListing extends React.Component {
             return (
                 <div>
                     {orders.map(item => (
-                            
-                            <div className="card" key={item.id}>
+                            <div className="card" key={item.goodsId}>
                             <img className="card-img-top" src={card3} alt="Card image cap"></img>
                                 <div className="card-body">
-                                   <h5 className="card-title">{item.id}</h5>
-                                    <p className="card-text">Sir joy northward sportsmen education. Discovery incommode earnestly no he commanded if. Put still any about manor heard. </p>
-                                   <a href={"customer/product/"+item.id} className="btn btn-primary">Read More</a>
+                                   <h5 className="card-title">{item.name}</h5>
+                                    <p className="card-text">Type: {item.type}</p>
+                                   <a href={"customer/product/"+item.goodsId} className="btn btn-primary">Read More</a>
                                  </div>
                              </div>
                          

@@ -6,33 +6,37 @@ class OrderDetail extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            productId: this.props.match.params.userId,
+            productId: this.props.match.params.orderId,
+            orderInfo: null,
+            products: null,
+            quantity: null, 
         };
     }
 
     componentDidMount() {
-        Promise.all([
-            fetch("https://api.github.com/users/"+this.state.productId),
-            fetch("https://api.github.com/users/"+this.state.productId+"/followers")
-        ])
-            .then(([res1, res2]) => Promise.all([res1.json(), res2.json()]))
-            .then(([data1, data2]) => {
-                this.setState({
-                isLoaded: true,
-                orderInfo: data1,
-                products: data2,
-            });
-            },
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-        });
+        fetch("http://localhost:8010/order/" + this.state.productId)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result)
+                    this.setState({
+                        isLoaded: true,
+                        orderInfo: result.orderInfo,
+                        products: result.orderInfo.goods,
+                        quantity: result.orderInfo.quantity
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
     }
 
     render() {
-        const { error, isLoaded, orderInfo, products} = this.state;
+        const { error, isLoaded, orderInfo, products, quantity} = this.state;
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {
@@ -41,20 +45,26 @@ class OrderDetail extends React.Component {
             return (
                 <div className="container">
                 <div>
-                    <h3>Product ID: {orderInfo.id}</h3>
-                    <p>Status: </p>
-                <table class="table table-striped">
+                    <h3>Order ID: {orderInfo.orderId}</h3>
+                    <p>Status: {orderInfo.orderState}</p>
+                <table className="table table-striped">
                     <thead>
                     <tr>
                         <th>Product ID</th>
-                        <th>Product Name</th>
+                        {/* <th>Product Name</th>
+                        <th>Type</th> */}
+                        <th>Quantity</th>
+                        {/* <th>Price</th> */}
                     </tr>
                     </thead>
                     <tbody>
-                    {products.map(p => (
-                        <tr key={p.login}>
-                            <td><a>{p.login}</a></td>
-                            <td>john@example.com</td>
+                    {products.map((p, index) => (
+                        <tr key={p.split("#")[1]}>
+                            <td><a href={"/customer/product/"+p.split("#")[1]}>{p.split("#")[1]}</a></td>
+                            {/* <td>{p.name}</td> */}
+                            {/* <td>{p.type}</td> */}
+                            <td>{quantity[index]}</td>
+                            {/* <td>{p.price * quantity[index]}</td> */}
                         </tr>
                     ))}
                     </tbody>

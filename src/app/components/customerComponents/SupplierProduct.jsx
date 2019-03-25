@@ -25,11 +25,11 @@ class SupplierProduct extends React.Component {
                     </thead>
                     <tbody>
                         {Object.keys(products).map(k => (
-                            <tr key={products[k].product.id}>
-                            <td>{products[k].product.id}</td>
-                            <td>{products[k].product.title}</td>
+                            <tr key={products[k].product.goodsId}>
+                            <td>{products[k].product.goodsId}</td>
+                            <td>{products[k].product.name}</td>
                             <td>{products[k].quantity}</td>
-                            <td>{products[k].quantity} * 2</td>
+                            <td>{products[k].product.price * products[k].quantity}</td>
                         </tr>
                         ))}
                     </tbody>

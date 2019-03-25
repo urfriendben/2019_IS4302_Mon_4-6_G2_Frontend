@@ -10,14 +10,13 @@ class OrderListing extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://api.github.com/users")
+        fetch("http://localhost:8010/orders")
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result);
                     this.setState({
                         isLoaded: true,
-                        orders: result
+                        orders: result.data
                     });
                 },
                 (error) => {
@@ -43,16 +42,18 @@ class OrderListing extends React.Component {
                     <thead>
                     <tr>
                         <th>Order ID</th>
-                        <th>Order Name</th>
+                        <th>Supplier</th>
+                        <th>Price</th>
                         <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
                         {orders.map(o => (
-                            <tr key={o.id}>
-                                <td><a href={"order/"+o.login}>{o.id}</a></td>
-                                <td>{o.login}</td>
-                                <td>john@example.com</td>
+                            <tr key={o.orderId}>
+                                <td><a href={"order/"+o.orderId}>{o.orderId}</a></td>
+                                <td>{o.supplier}</td>
+                                <td>{o.totalPrice}</td>
+                                <td>{o.orderState}</td>
                             </tr>
                             ))}
                     </tbody>

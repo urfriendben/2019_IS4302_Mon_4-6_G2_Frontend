@@ -14,14 +14,16 @@ class ProductDetail extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://jsonplaceholder.typicode.com/posts/"+this.state.productInfo)
+        console.log(this.state.productInfo);
+        fetch("http://localhost:8010/good/"+this.state.productInfo)
             .then(res => res.json())
             .then(
                 (result) => {
+                    console.log(result);
                     this.setState({
                         isLoaded: true,
-                        productInfo: result,
-                        supplierId: result.userId, 
+                        productInfo: result.data,
+                        supplierId: result.data.supplier.toString().split("#")[1], 
                     });
                 },
                 // Note: it's important to handle errors here
@@ -53,6 +55,7 @@ class ProductDetail extends React.Component {
       }
 
     render() {
+        console.log(this.state.productInfo);
         const { error, isLoaded, productInfo} = this.state;
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
@@ -62,17 +65,17 @@ class ProductDetail extends React.Component {
             return (
                 <div className="container">
                     <div>
-                        <h3>Product ID: {productInfo.id}</h3>
-                        <p>Name: {productInfo.title}</p>
-                        <p>Type: </p>
-                        <p>Price: </p>
-                        <p>Supplier: {productInfo.userId}</p>
+                        <h3>Product ID: {productInfo.goodsId}</h3>
+                        <p>Name: {productInfo.name}</p>
+                        <p>Type: {productInfo.type}</p>
+                        <p>Price: {productInfo.price}</p>
+                        <p>Supplier: {this.state.supplierId}</p>
                     </div>
                     
                     
                     <label>Quantity: </label>
                         <input className="form-control mr-sm-2 quantity-input" placeholder="1" type="number" min="1" max={productInfo.length} onChange={this.handleChange}></input>
-                        <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.addItem(productInfo.id, productInfo)} style={{marginLeft: '10px'}}> Add To Cart</button>
+                        <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.addItem(productInfo.goodsId, productInfo)} style={{marginLeft: '10px'}}> Add To Cart</button>
                     
                 </div>)
         }
