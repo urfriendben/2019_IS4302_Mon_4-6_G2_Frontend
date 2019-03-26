@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import CustomerHome from 'app/components/customerComponents/CustomerHome';
 import Home from 'app/components/Home';
 import OrderDetail from 'app/components/customerComponents/OrderDetail';
-import OrderListing from 'app/components/customerComponents/OrderListing';
+import OrderListing from 'app/components/customerComponents/orderListing';
 import ProductListing from 'app/components/customerComponents/ProductListing';
 import ProductDetail from 'app/components/customerComponents/ProductDetail';
 import ShoppingCart from 'app/components/customerComponents/ShoppingCart';
