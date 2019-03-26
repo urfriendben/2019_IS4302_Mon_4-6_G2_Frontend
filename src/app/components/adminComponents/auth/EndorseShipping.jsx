@@ -1,12 +1,17 @@
 import * as React from 'react';
-import { Button, Form, FormGroup, Label, Input, InputGroup, InputGroupText, InputGroupAddon, FormText, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Alert, Button, Form, FormGroup, Label, Input, InputGroup, InputGroupText, InputGroupAddon, FormText, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import Axios from 'axios';
+import { url } from 'enum.json';
 class EndorseShipping extends React.Component {
     constructor(props) {
+        const loggedIn = JSON.parse(sessionStorage.getItem('loggedIn'));
         super(props);
         this.state = {
           modal: false,
-          id: props.id,
-          type: Math.floor(Math.random() * 2) === 0 ? 'SHIPPING' : 'DELIVERY'
+          id: props.order.shipmentId,
+          type: props.supHandover ? 'SHIPPING' : props.conHandover ? 'DELIVERY' : null,
+          port: loggedIn.port,
+          error: false
         };
     }
 
@@ -16,8 +21,24 @@ class EndorseShipping extends React.Component {
       }));
     }
 
+    submit = () => {
+      Axios.post(url + (this.state.type === 'SHIPPING' ? '/ShippingPartnerEndorseHandover' : this.state.type === 'DELIVERY' ? '/ShippingPartnerDelivery' : null), {
+        shipmentId: this.state.id
+      }, {
+        headers: {
+          port: this.state.port
+        }
+      }).then((result) => {
+        document.location.reload();
+      }).catch((err) => {
+        this.setState({
+          error: true
+        });
+      })
+    }
+
     render() {
-        const { modal, endorseOrderId, id, type } = this.state;
+        const { modal, id, type, error } = this.state;
         return (
           <div>
             <Button color="primary" onClick={this.toggle}>{type === 'SHIPPING' ? 'Endorse' : 'Deliver'}</Button>
@@ -32,7 +53,9 @@ class EndorseShipping extends React.Component {
                 </Form>
               </ModalBody>
               <ModalFooter>
-                <Button color="success" onClick={this.toggle}>{type === 'SHIPPING' ? 'Endorse' : 'Deliver'}</Button>
+                <Button color="success" onClick={this.submit}>{type === 'SHIPPING' ? 'Endorse' : 'Deliver'}</Button>
+                <br/>
+                {error ? <Alert variant="danger">An error has occurred</Alert> : null}
               </ModalFooter>
             </Modal>
           </div>

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Jumbotron } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import Axios from 'axios';
+import { url } from 'enum.json';
 
 class Login extends React.Component {
     username = '';
@@ -16,15 +17,16 @@ class Login extends React.Component {
 
     LoginSubmit = () => {
       let history = this.props.history;
-      Axios.post('http://localhost:8010/login',
+      Axios.post(url + '/login',
         {
           username: this.username,
           password: this.password
       }).then(function(res) {
         if (res.status !== 500) {
           sessionStorage.setItem('loggedIn', JSON.stringify({
-            username: res.data.username,
-            role: res.data.role
+            username: res.data.data.username,
+            role: res.data.data.role,
+            port: res.data.data.port
           }));
           history.push('/auth');
         }
