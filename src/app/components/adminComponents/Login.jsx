@@ -15,19 +15,22 @@ class Login extends React.Component {
     }
 
     LoginSubmit = () => {
-      Axios.post('http://172.23.202.175:8010/login', 
+      let history = this.props.history;
+      Axios.post('http://localhost:8010/login',
         {
           username: this.username,
           password: this.password
       }).then(function(res) {
-        console.log(res);
-        sessionStorage.setItem('loggedIn', JSON.stringify({
-          username: res.username,
-          role: res.role
-        }));
+        if (res.status !== 500) {
+          sessionStorage.setItem('loggedIn', JSON.stringify({
+            username: res.data.username,
+            role: res.data.role
+          }));
+          history.push('/auth');
+        }
       })
-     
-  
+
+
     }
 
     render() {
