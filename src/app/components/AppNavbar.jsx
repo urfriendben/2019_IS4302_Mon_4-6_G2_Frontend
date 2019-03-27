@@ -5,10 +5,13 @@ import { withRouter } from 'react-router-dom';
 
 class AppNavbar extends React.Component {
   constructor(props) {
+      const loggedIn = JSON.parse(sessionStorage.getItem('loggedIn'));
+
       super(props);
       this.state = {
           // loggedIn: sessionStorage.getItem('loggedIn'),
-          show: true
+          show: true,
+          role: loggedIn.role
       };
   }
 
@@ -38,7 +41,7 @@ class AppNavbar extends React.Component {
   }
 
   render() {
-    const { loggedIn, show } = this.state;
+    const { loggedIn, show, role } = this.state;
 
     if (!show) {
       return <div></div>;
@@ -73,16 +76,18 @@ class AppNavbar extends React.Component {
                     <a className="nav-link" href="/auth">Orders</a>
                 }
 							</li>
-							<li className="nav-item dropdown">
-								<a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-								   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Products
-								</a>
-								<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-									<a className="dropdown-item" href="#">Create</a>
-									<a className="dropdown-item" href="#">View</a>
-								</div>
-							</li>
+              {role === 'SUPPLIER' ?
+  							<li className="nav-item dropdown">
+  								<a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+  								   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  									Products
+  								</a>
+  								<div className="dropdown-menu" aria-labelledby="navbarDropdown">
+  									<a className="dropdown-item" href="#">Create</a>
+  									<a className="dropdown-item" href="#">View</a>
+  								</div>
+  							</li>
+              : null}
               <li className="nav-item">
                 {
                   // !loggedIn ?

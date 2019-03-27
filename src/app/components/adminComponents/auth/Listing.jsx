@@ -64,8 +64,8 @@ class Listing extends React.Component {
                     </thead>
                     <tbody>
                         {orders.map(o => (
-                            <tr key={o.orderId}>
-                                <td>{o.orderId}</td>
+                            <tr key={role === 'SUPPLIER' ? o.orderId : o.shipmentId}>
+                                <td>{role === 'SUPPLIER' ? o.orderId : o.shipmentId}</td>
                                 <td>{role === 'SUPPLIER' ? o.orderState : o.shipmentState}</td>
                                 <td>{ role === 'SUPPLIER' ? o.orderState === 'orderPlaced' ? <EndorseSupplier order={o} /> : null : o.supplierHandover && !o.shippingPartnerHandoverEndorsed ? <EndorseShipping order={o} supHandover /> : o.supplierHandover && o.shippingPartnerHandoverEndorsed && !o.shippingPartnerDelivery ? <EndorseShipping order={o} conHandover /> : null }</td>
                             </tr>
