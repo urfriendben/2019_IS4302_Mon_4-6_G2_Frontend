@@ -56,7 +56,8 @@
   "scripts": {
     "start": "NODE_PATH=src node scripts/start.js",
     "build": "NODE_PATH=src node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "deploy": "npm run build && mv build/index.html build/200.html && surge build admin-is4302.surge.sh"
   },
   "jest": {
     "collectCoverageFrom": [
