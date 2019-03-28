@@ -23,7 +23,7 @@ class AppNavbar extends React.Component {
 							<li className="nav-item">
 								<a className="nav-link" href="/customer/viewAllOrder">View Order History</a>
 							</li>
-							<li className="nav-item dropdown">
+							{/* <li className="nav-item dropdown">
 								<a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 								   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Products
@@ -34,18 +34,18 @@ class AppNavbar extends React.Component {
 									<div className="dropdown-divider"></div>
 									<a className="dropdown-item" href="#">Special Offer</a>
 								</div>
-							</li>
+							</li> */}
 				
 						</ul>
-						<form className="form-inline my-2 my-lg-0">
+						{/* <form className="form-inline my-2 my-lg-0">
 							<input className="form-control mr-sm-2" type="search" placeholder="Search"
 								   aria-label="Search"></input>
 								<button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-							{/* <button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Log In
+							<button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Log In
 							</button>
 							<button className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}> Sign Up
-							</button> */}
-						</form>
+							</button>
+						</form> */}
 						<a href={"/customer/shoppingCart"} className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}>
 						<i className='fas fa-shopping-cart'></i> Shopping Cart
 						</a>

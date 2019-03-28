@@ -1,7 +1,7 @@
 import * as React from 'react';
 import card1 from 'img/card1.jpg';
-import card2 from 'img/card2.jpg';
-import card3 from 'img/card3.jpg';
+// import card2 from 'img/card2.jpg';
+// import card3 from 'img/card3.jpg';
 import "sass/components/customerComponents/components.scss";
 
 class ProductListingItem extends React.Component {
@@ -20,7 +20,7 @@ class ProductListingItem extends React.Component {
         return (
             <div className="col-4">
                 <div className="card" key={item.goodsId}>
-                <img className="card-img-top" src={card3} alt="Card image cap"></img>
+                <img className="card-img-top" src={card1} alt="Card image cap"></img>
                     <div className="card-body">
                     <h5 className="card-title">{item.name}</h5>
                         <p className="card-text">Type: {item.type}</p>
