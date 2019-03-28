@@ -2,6 +2,7 @@ import * as React from 'react';
 import "sass/components/customerComponents/appNavbar.scss";
 import logo from 'img/logo.png';
 import { withRouter } from 'react-router-dom';
+import ProductForm from './adminComponents/auth/ProductForm';
 
 class AppNavbar extends React.Component {
   constructor(props) {
@@ -83,8 +84,8 @@ class AppNavbar extends React.Component {
   									Products
   								</a>
   								<div className="dropdown-menu" aria-labelledby="navbarDropdown">
-  									<a className="dropdown-item" href="#">Create</a>
-  									<a className="dropdown-item" href="#">View</a>
+  									<ProductForm type="CREATE" />
+  									<a className="dropdown-item" href="/auth/products">View</a>
   								</div>
   							</li>
               : null}
