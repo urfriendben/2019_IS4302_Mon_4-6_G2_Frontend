@@ -3,42 +3,42 @@ import card1 from 'img/card1.jpg';
 import card2 from 'img/card2.jpg';
 import card3 from 'img/card3.jpg';
 import 'sass/components/customerComponents/home.scss';
-
+import Axios from 'axios';
 class ProductListing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
-            orders: []
+            orders: [],
         };
     }
 
     componentDidMount() {
-        fetch("http://localhost:8010/goods")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    this.setState({
-                        isLoaded: true,
-                        orders: result.data
-                    });
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
-                }
-            )
+        fetch("http://52.15.98.17:8010/goods",{headers: {'port': 3000}})
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    orders: result.data
+                });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error
+                });
+            }
+        )
     }
 
     render() {
         console.log(this.state.orders);
-        const { error, isLoaded, orders } = this.state;
+        var { error, isLoaded, orders} = this.state;
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {

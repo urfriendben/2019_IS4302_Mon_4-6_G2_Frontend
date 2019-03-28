@@ -1,16 +1,20 @@
 import * as React from 'react';
+import Axios from 'axios';
 class OrderListing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             error: null,
             isLoaded: false,
-            orders: []
+            orders: [],
+            
         };
     }
 
     componentDidMount() {
-        fetch("http://localhost:8010/orders")
+        fetch("http://52.15.98.17:8010/orders",{
+            headers: {'port': 3000},
+            })
             .then(res => res.json())
             .then(
                 (result) => {

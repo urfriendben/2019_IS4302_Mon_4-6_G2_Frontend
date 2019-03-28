@@ -10,6 +10,7 @@ class MakeOrder extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
+            port:3000,
             products: this.props.location.state, // {supplierId:{productId:product}}
             //product: {quantity: this.state.quantity, product:productInfo}
         };
@@ -38,8 +39,9 @@ class MakeOrder extends React.Component {
     // }
 
     confirm = (obj) => {
-        Axios.post('http://localhost:8010/makeOrder',  {
-          "data": this.state.products
+        Axios.post('http://52.15.98.17:8010/makeOrder',  {
+          "data": this.state.products,
+          "headers": {'port': this.state.port},
           })
           .then(function (response) {
             console.log(response);

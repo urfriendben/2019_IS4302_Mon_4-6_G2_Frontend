@@ -14,12 +14,14 @@ class OrderDetail extends React.Component {
             price: null,
             type: null,
             quantity: null, 
+          
         };
     }
 
     componentDidMount() {
         var self = this;
-        Axios.post('http://localhost:8010/order/' + this.state.productId,  {
+        Axios.get('http://52.15.98.17:8010/order/' + this.state.productId,{
+            headers: {'port': 3000},
             })
             .then(function (result) {
                 

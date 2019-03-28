@@ -1,6 +1,6 @@
 import * as React from 'react';
 import "sass/components/customerComponents/components.scss";
-
+import Axios from 'axios';
 class ProductDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -10,12 +10,15 @@ class ProductDetail extends React.Component {
             productInfo: this.props.match.params.productId,
             quantity: 1, 
             supplierId: null,
+            
         };
     }
 
     componentDidMount() {
         console.log(this.state.productInfo);
-        fetch("http://localhost:8010/good/"+this.state.productInfo)
+        fetch("http://52.15.98.17:8010/good/"+this.state.productInfo,{
+            headers: {'port': 3000},
+            })
             .then(res => res.json())
             .then(
                 (result) => {
