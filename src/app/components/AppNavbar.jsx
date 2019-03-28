@@ -11,7 +11,7 @@ class AppNavbar extends React.Component {
       this.state = {
           // loggedIn: sessionStorage.getItem('loggedIn'),
           show: true,
-          role: loggedIn.role
+          role: loggedIn && loggedIn.role
       };
   }
 
