@@ -1,9 +1,7 @@
 import * as React from 'react';
-import card1 from 'img/card1.jpg';
-import card2 from 'img/card2.jpg';
-import card3 from 'img/card3.jpg';
+import ProductListingItem from 'app/components/customerComponents/ProductListingItem';
 import 'sass/components/customerComponents/home.scss';
-import Axios from 'axios';
+
 class ProductListing extends React.Component {
     constructor(props) {
         super(props);
@@ -46,19 +44,18 @@ class ProductListing extends React.Component {
         } else {        
             return (
                 <div>
-                    {orders.map(item => (
-                            <div className="card" key={item.goodsId}>
-                            <img className="card-img-top" src={card3} alt="Card image cap"></img>
-                                <div className="card-body">
-                                   <h5 className="card-title">{item.name}</h5>
-                                    <p className="card-text">Type: {item.type}</p>
-                                   <a href={"customer/product/"+item.goodsId} className="btn btn-primary">Read More</a>
-                                 </div>
-                             </div>
-                         
-                            ))
-                            
+                    {orders.map((item, index) => {
+                        if(index % 3 == 0){
+                            return (
+                                <div className="row" style={{height: "350px"}}> 
+                                    <ProductListingItem item={orders[index]}></ProductListingItem>
+                                    <ProductListingItem item={orders[index + 1]}></ProductListingItem>
+                                    <ProductListingItem item={orders[index + 2]}></ProductListingItem>
+                                </div>
+                            )}
                             }
+                        )
+                    }
                 </div>
             );
             }

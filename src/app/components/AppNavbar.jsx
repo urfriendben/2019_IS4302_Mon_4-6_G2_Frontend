@@ -1,13 +1,13 @@
 import * as React from 'react';
 import "sass/components/customerComponents/appNavbar.scss";
-import logo from 'img/logo.png';
+// import logo from 'img/logo.png';
 
 class AppNavbar extends React.Component {
   render() {
     return (
 			
 				<nav className="navbar navbar-expand-lg navbar-light bg-light">
-					<img src={logo}></img>
+					{/* <img src={logo}></img> */}
 					<a className="navbar-brand" href="/">Online Shopping Tool</a>
 					<button className="navbar-toggler" type="button" data-toggle="collapse"
 							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
