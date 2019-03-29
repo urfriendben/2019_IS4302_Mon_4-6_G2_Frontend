@@ -43,7 +43,7 @@ class ShoppingCart extends React.Component {
             this.props.history.push(
             {
                 pathname: `/customer/makeOrder`,
-                state: this.state.selectedSupplier 
+                state: this.state.selectedSupplier
               });
             }
     }
@@ -55,7 +55,7 @@ class ShoppingCart extends React.Component {
             if(ss[product.product.supplier] == null || ss[product.product.supplier] == 'undefined'){ss[product.product.supplier] = {}};
             ss[product.product.supplier][product.product.goodsId] = product;
             sp[product.product.goodsId] = product;
-            
+
         }else{
             delete ss[product.product.supplier][product.product.goodsId];
             delete sp[product.product.goodsId];
@@ -109,8 +109,8 @@ class ShoppingCart extends React.Component {
         ? <div className="alert alert-success">{data}</div>
         : <div></div>
       }
-                  
-                  
+
+
                 <table className="table table-striped">
                     <thead>
                     <tr>

@@ -13,8 +13,8 @@ class OrderDetail extends React.Component {
             goodsName: null,
             price: null,
             type: null,
-            quantity: null, 
-          
+            quantity: null,
+            shipment: null
         };
     }
 
@@ -24,7 +24,7 @@ class OrderDetail extends React.Component {
             headers: {'port': 3000},
             })
             .then(function (result) {
-                
+
                 console.log(result);
               self.setState({
                 isLoadedGoods: true,
@@ -36,6 +36,20 @@ class OrderDetail extends React.Component {
                 type: result.data.type,
                 quantity: result.data.quantity
             });
+
+            Axios.get('http://52.15.98.17:8010/shipments',{
+                headers: {'port': 3000},
+                })
+                .then(function (result) {
+                  var shipments = result.data.data.map(function (shipment) {
+                    if (shipment.order.split('#')[1] === self.state.orderInfo.orderId) {
+                      return shipment;
+                    }
+                  })
+                  self.setState({
+                    shipment: shipments[0]
+                  })
+                })
             })
             .catch(function (error) {
               console.log(error);
@@ -55,6 +69,7 @@ class OrderDetail extends React.Component {
                 <div>
                     <h3>Order ID: {orderInfo.orderId}</h3>
                     <p>Status: {orderInfo.orderState}</p>
+                    <p><span style={{color: this.state.shipment && !this.state.shipment.shippingPartnerHandoverEndorsed ? '#00b16a' : '#212529'}}>Supplier Preparing</span> > <span style={{color: this.state.shipment && this.state.shipment.shippingPartnerHandoverEndorsed && !this.state.shipment.consumerEndorsed ? '#00b16a' : '#212529'}}>Shipping Partner In Transit</span> > <button disabled={this.state.shipment && this.state.shipment.shippingPartnerDelivery && !this.state.shipment.consumerEndorsed ? true : false} className={this.state.shipment && this.state.shipment.shippingPartnerDelivery && !this.state.shipment.consumerEndorsed ? "btn" : "btn btn-outline-success"}>Close Order</button></p>
                 <table className="table table-striped">
                     <thead>
                     <tr>

@@ -34,13 +34,21 @@ class MakeOrder extends React.Component {
     //         console.log(response);
     //         throw Error(response.statusText);
     //     }
-        
+
     //     return response;
     // }
 
     confirm = (obj) => {
+        var products = {};
+        Object.keys(this.state.products).forEach(supplierId => {
+          products[supplierId] = {};
+          Object.keys(this.state.products[supplierId]).forEach(productId => {
+            products[supplierId]["resource:org.onlineshopping.basic.Goods#" + productId] = {};
+            products[supplierId]["resource:org.onlineshopping.basic.Goods#" + productId].quantity = this.state.products[supplierId][productId].quantity;
+          })
+        })
         Axios.post('http://52.15.98.17:8010/makeOrder',  {
-          "data": this.state.products,
+          "data": products,
           "headers": {'port': this.state.port},
           })
           .then(function (response) {
@@ -56,7 +64,7 @@ class MakeOrder extends React.Component {
             console.log(error);
             alert(error);
           });
-  
+
         // try{
         //     fetch('https://jsonplaceholder.typicode.com/posts', {
         //         method: 'post',
@@ -92,11 +100,11 @@ class MakeOrder extends React.Component {
         //         });
         //         return null;
         // }else{
-            
+
         //     if (error) {
         //         return <div className="container"><div>Error: {error.message}</div></div>;
         //     } else {
-  
+
                 return (
                         <div className="container">
                         <Loader></Loader>

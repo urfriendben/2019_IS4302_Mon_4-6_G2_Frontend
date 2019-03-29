@@ -7,7 +7,7 @@ class OrderListing extends React.Component {
             error: null,
             isLoaded: false,
             orders: [],
-            
+            orderId: null
         };
     }
 
@@ -32,6 +32,10 @@ class OrderListing extends React.Component {
             )
     }
 
+    handleChange = (event) => {
+        this.setState({orderId: event.target.value});
+      }
+
     render() {
         const { error, isLoaded, orders } = this.state;
         if (error) {
@@ -42,26 +46,8 @@ class OrderListing extends React.Component {
             return (
                 <div className="container">
                 <h3>View Order History</h3>
-                <table className="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Order ID</th>
-                        <th>Supplier</th>
-                        <th>Price</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map(o => (
-                            <tr key={o.orderId}>
-                                <td><a href={"order/"+o.orderId}>{o.orderId}</a></td>
-                                <td>{o.supplier}</td>
-                                <td>{o.totalPrice}</td>
-                                <td>{o.orderState}</td>
-                            </tr>
-                            ))}
-                    </tbody>
-                </table>
+                <input className="form-control mr-sm-2 quantity-input" type="number" onChange={this.handleChange}></input>
+                <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => window.location.href = "/customer/order/" + this.state.orderId}> View</button>
                 </div>)
         }
     }
