@@ -47,8 +47,7 @@ class MakeOrder extends React.Component {
             products[supplierId]["resource:org.onlineshopping.basic.Goods#" + productId].quantity = this.state.products[supplierId][productId].quantity;
           })
         })
-        Axios.post('http://52.15.98.17:8010/makeOrder',  {
-          "data": products,
+        Axios.post('http://52.15.98.17:8010/makeOrder', products, {
           "headers": {'port': this.state.port},
           })
           .then(function (response) {
