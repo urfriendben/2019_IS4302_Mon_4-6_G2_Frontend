@@ -55,7 +55,7 @@ class MakeOrder extends React.Component {
             obj.props.history.push(
             {
                 pathname: `/customer/shoppingCart`,
-                data: 'Successfully placed the order! You can now view it in your order history.',
+                data: 'Successfully placed the order! You can now view it in your order history. OrderId:' + response.data + " Pleae keep this OrderId for future reference.",
                 object: obj.state.products
             });
           })
