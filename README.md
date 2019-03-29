@@ -9,7 +9,7 @@ Note! Before accessing these link, please install this Chrome extension:
 https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
 then open the below link in Chrome browser:
 
-Consumer:
+Consumer:<br/>
 http://customer-is4302.surge.sh
 
 Supplier/Shipping Partner:<br/>
