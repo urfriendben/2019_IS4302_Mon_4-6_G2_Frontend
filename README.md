@@ -13,7 +13,7 @@ Consumer:
 http://customer-is4302.surge.sh
 
 Supplier/Shipping Partner:<br/>
-http://admin-is4302.surge.sh
+http://admin-is4302.surge.sh<br/>
 This website requires login
 If you want to login as a supplier
 Username: supplier
