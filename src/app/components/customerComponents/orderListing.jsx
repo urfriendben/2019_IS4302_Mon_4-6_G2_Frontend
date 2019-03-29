@@ -46,7 +46,7 @@ class OrderListing extends React.Component {
             return (
                 <div className="container">
                 <h3>View Order History</h3>
-                <input className="form-control mr-sm-2 quantity-input" type="number" onChange={this.handleChange}></input>
+                <input className="form-control mr-sm-2 quantity-input" type="text" onChange={this.handleChange}></input>
                 <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => window.location.href = "/customer/order/" + this.state.orderId}> View</button>
                 </div>)
         }
