@@ -33,20 +33,22 @@ To run the project on the localhost, make sure you have installed the below depe
 The commands to run on the command line:
 1. To clone the repository to local: 
 ```bash
-git clone https://github.com/urfriendben/is4302_ecomm.git
+git clone https://github.com/urfriendben/2019_IS4302_Mon_4-6_G2_Frontend.git
 ```
 2. Navigate to the root folder of the repository
 ```
 cd path_to_repository
 ```
-3. To direct to the customer branch
+3. To direct to the customer/admin branch
 ```bash
 git checkout customer
+```
+```bash
+git checkout admin
 ```
 4. Use npm to install modules and start the server
 ```bash
 npm install
-npm run build
 npm run start
 ```
 5. The default browser will auto open the webpage on localhost:3000
