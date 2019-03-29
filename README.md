@@ -25,7 +25,6 @@ Password: password
 ## Table of Contents
 
 - [Installation Guild](#installation-guide)
-- [Folder Structure](#folder-structure)
 - [Supported Browsers](#supported-browsers)
 
 ## Installation Guide
