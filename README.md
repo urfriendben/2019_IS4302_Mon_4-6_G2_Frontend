@@ -14,13 +14,18 @@ http://customer-is4302.surge.sh
 
 Supplier/Shipping Partner:<br/>
 http://admin-is4302.surge.sh<br/>
-This website requires login
-If you want to login as a supplier
-Username: supplier
-Password: password
-If you want to login as a shipping partner:
-Username: shipping_partner
-Password: password
+
+
+<b>This website requires login</b><br/>
+
+If you want to login as a supplier<br/>
+Username: supplier<br/>
+Password: password<br/>
+
+If you want to login as a shipping partner:<br/>
+Username: shipping_partner<br/>
+Password: password<br/>
+
 
 ## Table of Contents
 
