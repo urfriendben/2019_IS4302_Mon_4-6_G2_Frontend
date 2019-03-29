@@ -6,7 +6,7 @@ Our project is a online shopping website and built on the permissioned Hyperledg
 ## Deployed websites link
 Our project has been deployed on the cloud, you can directly access them through these links below:
 Note! Before accessing these link, please install this Chrome extension:
-https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en
+https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en <b>(Ensure extension turned on and shows green when testing application, turn off and shows red when not testing to avoid errors in other websites on chrome)</b>
 then open the below link in Chrome browser:
 
 Consumer:<br/>
