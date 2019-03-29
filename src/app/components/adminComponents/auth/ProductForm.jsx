@@ -117,7 +117,7 @@ class ProductForm extends React.Component {
                 <Form>
                   <FormGroup>
                     <Label for="pId">Product ID</Label>
-                    <Input type="text" name="pId" id="pId" value={this.state.goodsId} disabled={action === 'CREATE' ? false : true} onChange={(e) => this.setState({id: e.target.value})} />
+                    <Input type="text" name="pId" id="pId" value={this.state.id} disabled={action === 'CREATE' ? false : true} onChange={(e) => this.setState({id: e.target.value})} />
                   </FormGroup>
                   <FormGroup>
                     <Label for="name">Name</Label>
