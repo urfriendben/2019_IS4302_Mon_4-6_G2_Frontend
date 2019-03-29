@@ -41,13 +41,14 @@ class OrderDetail extends React.Component {
                 headers: {'port': 3000},
                 })
                 .then(function (result) {
-                  var shipments = result.data.data.map(function (shipment) {
+                  var found = null;
+                  result.data.data.map(function (shipment) {
                     if (shipment.order.split('#')[1] === self.state.orderInfo.orderId) {
-                      return shipment;
+                      found = shipment;
                     }
                   })
                   self.setState({
-                    shipment: shipments[0]
+                    shipment: found
                   })
                 })
             })
@@ -97,7 +98,7 @@ class OrderDetail extends React.Component {
                 <div>
                     <h3>Order ID: {orderInfo.orderId}</h3>
                     <p>Status: {orderInfo.orderState}</p>
-                    <p><span style={{color: this.state.shipment ? !this.state.shipment.shippingPartnerHandoverEndorsed ? '#00b16a' : '#212529' : '#00b16a'}}>Supplier Preparing</span> > <span style={{color: this.state.shipment && this.state.shipment.shippingPartnerHandoverEndorsed && !this.state.shipment.consumerEndorsed ? '#00b16a' : '#212529'}}>Shipping Partner In Transit</span> > <button disabled={this.state.shipment && this.state.shipment.shippingPartnerDelivery && !this.state.shipment.consumerEndorsed ? false : true} className={this.state.shipment && this.state.shipment.shippingPartnerDelivery && !this.state.shipment.consumerEndorsed ? "btn btn-outline-success" : "btn"} onClick={this.closeOrder}>Close Order</button></p>
+                    <p><span style={{color: this.state.shipment ? !this.state.shipment.shippingPartnerHandoverEndorsed ? '#00b16a' : '#212529' : '#00b16a'}}>Supplier Preparing</span> > <span style={{color: this.state.shipment && this.state.shipment.shippingPartnerHandoverEndorsed && !this.state.shipment.shippingPartnerDelivery && !this.state.shipment.consumerEndorsed ? '#00b16a' : '#212529'}}>Shipping Partner In Transit</span> > <button disabled={this.state.shipment && this.state.shipment.shippingPartnerDelivery && this.state.shipment.ShippingPartnerDelivery && !this.state.shipment.consumerEndorsed ? false : true} className={this.state.shipment && this.state.shipment.shippingPartnerDelivery && !this.state.shipment.consumerEndorsed ? "btn btn-outline-success" : "btn"} onClick={this.closeOrder}>Close Order</button></p>
                 <table className="table table-striped">
                     <thead>
                     <tr>
