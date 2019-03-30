@@ -19,10 +19,11 @@ class MakeOrder extends React.Component {
     calculatePrice = () => {
         var price = 0;
         var products = this.state.products;
+        console.log(products);
         Object.keys(products).map(supplierId => {
             Object.keys(products[supplierId]).map (productId=> {
                 var p = products[supplierId][productId];
-                price += p.quantity * 2;
+                price += p.quantity * p.product.price;
             })
         }
         )
