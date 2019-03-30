@@ -1,6 +1,7 @@
 import * as React from 'react';
 import "sass/components/customerComponents/components.scss";
 import Axios from 'axios';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 class ProductDetail extends React.Component {
     constructor(props) {
         super(props);
@@ -68,7 +69,16 @@ class ProductDetail extends React.Component {
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {
-            return <div className="container"><div>Loading...</div></div>;
+            return <Modal isOpen={true} centered={true}>
+              <ModalBody>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;Loading... Please wait while we load your data...</span>
+                </div>
+              </ModalBody>
+            </Modal>
         } else {
             return (
                 <div className="container" style={{marginTop: '20px'}}>
@@ -80,7 +90,7 @@ class ProductDetail extends React.Component {
 
                     <div className="col-sm-7">
                       <p>Type: {productInfo.type}</p>
-                      <p>Price: {productInfo.price}</p>
+                      <p>SGD${productInfo.price}</p>
                       <p>Supplier: {this.state.supplierId}</p>
                       <label>Quantity: </label>
                           <input className="form-control mr-sm-2" placeholder="1" type="number" min="1" max={productInfo.length} onChange={this.handleChange} style={inputStyle}></input>

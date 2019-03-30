@@ -8,7 +8,7 @@ class CustomerHome extends React.Component {
     return (
         <div>
             <Carousell></Carousell>
-            <div className="container">
+            <div className="container" style={{marginTop: '20px'}}>
                 <ProductListing></ProductListing>
             </div>
         </div>

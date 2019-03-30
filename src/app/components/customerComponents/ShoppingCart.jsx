@@ -39,7 +39,7 @@ class ShoppingCart extends React.Component {
     makeOrder = () => {
         if(Object.keys(this.state.selectedSupplier).length == 0){
             alert("You have not select any product yet!");
-        }else{        
+        }else{
             this.props.history.push(
             {
                 pathname: `/customer/makeOrder`,
@@ -93,7 +93,11 @@ class ShoppingCart extends React.Component {
         this.clearPartialLSOrdered();
         if(Object.keys(this.state.products).length == 0){
             return (
-                <div className="container">
+                <div className="container" style={{marginTop: '20px'}}>
+                                    { (this.props.location.data != null && this.props.location.data != 'undefined')
+                    ? <div className="alert alert-success" dangerouslySetInnerHTML={{__html: this.props.location.data}}></div>
+                    : <div></div>
+                    }
                     <p>Your Shopping Cart is still empty!</p>
                     <a href={"/customer"} className="btn btn-outline-success my-2 my-sm-0">
 						Browse All Products
@@ -110,13 +114,13 @@ class ShoppingCart extends React.Component {
         ? <div className="alert alert-danger" role="alert">{error}</div>
         : <div></div>
       }
-                        { (data != null && data != 'undefined')
-        ? <div className="alert alert-success">{data}</div>
+                        { (this.props.location.data != null && this.props.location.data != 'undefined')
+        ? <div className="alert alert-success" dangerouslySetInnerHTML={{__html: this.props.location.data}}></div>
         : <div></div>
       }
 
 
-                <table className="table table-striped shopping-cart-table" style={{marginBottom: '40px'}}>
+                <table className="table table-striped shopping-cart-table" style={{marginBottom: '40px'}} style={{marginTop: '20px'}}>
                     <thead>
                     <tr>
                         <th>Select</th>
@@ -140,9 +144,9 @@ class ShoppingCart extends React.Component {
                             )})}
                     </tbody>
                 </table>
-                <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.clearLS()} style={{marginRight: '10px'}}> Clear All Products</button>
-                <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.clearPartialLS()}> Clear Selected Products</button>
-                <a href={"/customer"} className="btn btn-outline-success my-2 my-sm-0" style={{marginLeft: '10px'}}>
+                <button className="btn btn-outline-danger my-2 my-sm-0" onClick={() => this.clearLS()} style={{marginRight: '10px'}}> Clear All Products</button>
+                <button className="btn btn-outline-danger my-2 my-sm-0" onClick={() => this.clearPartialLS()}> Clear Selected Products</button>
+                <a href={"/customer"} className="btn btn-outline-info my-2 my-sm-0" style={{marginLeft: '10px'}}>
 						Browse All Products
 					</a>
                     <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.makeOrder()} style={{marginLeft: '10px'}}> Make Order</button>

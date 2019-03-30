@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Axios from 'axios';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 class OrderDetail extends React.Component {
     constructor(props) {
@@ -91,10 +92,19 @@ class OrderDetail extends React.Component {
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoadedGoods ) {
-            return <div className="container"><div>Loading...</div></div>;
+            return <Modal isOpen={true} centered={true}>
+              <ModalBody>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;Loading... Please wait while we load your data...</span>
+                </div>
+              </ModalBody>
+            </Modal>
         } else {
             return (
-                <div className="container">
+                <div className="container" style={{marginTop: '20px'}}>
                 <div>
                     <h3>Order ID: {orderInfo.orderId}</h3>
                     <p>Status: {orderInfo.orderState}</p>
