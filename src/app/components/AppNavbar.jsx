@@ -7,12 +7,11 @@ import ProductForm from './adminComponents/auth/ProductForm';
 class AppNavbar extends React.Component {
   constructor(props) {
       const loggedIn = JSON.parse(sessionStorage.getItem('loggedIn'));
-
       super(props);
       this.state = {
           // loggedIn: sessionStorage.getItem('loggedIn'),
           show: true,
-          role: loggedIn && loggedIn.role
+          role: loggedIn ? loggedIn.role : null
       };
   }
 
@@ -23,20 +22,21 @@ class AppNavbar extends React.Component {
 
   componentDidMount() {
     // if (this.props.location.pathname.includes('admin')) {
-    const loggedIn = sessionStorage.getItem('loggedIn');
+    const loggedIn = JSON.parse(sessionStorage.getItem('loggedIn'));
     if (loggedIn === 'null' || !loggedIn) {
-      this.setState({show: false});
+      this.setState({show: false, role: loggedIn ? loggedIn.role : null});
     }
     // }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
+      const loggedIn = JSON.parse(sessionStorage.getItem('loggedIn'));
       // if (this.props.location.pathname.includes('admin')) {
       if (this.props.location.pathname.includes('auth')) {
-        this.setState({show: true});
+        this.setState({show: true, role: loggedIn ? loggedIn.role : null});
       } else {
-        this.setState({show: true});
+        this.setState({show: true, role: loggedIn ? loggedIn.role : null});
       }
     }
   }
