@@ -5,10 +5,10 @@ import logo from 'img/logo.png';
 class AppNavbar extends React.Component {
   render() {
     return (
-			
+
 				<nav className="navbar navbar-expand-lg navbar-light bg-light">
 					<img src={logo} style={{width:'50px'}}></img>
-					<a style={{marginLeft: '20px'}} className="navbar-brand" href="/">Online Shopping Tool</a>
+					<a style={{marginLeft: '20px'}} className="navbar-brand" href="/">ShopEasy</a>
 					<button className="navbar-toggler" type="button" data-toggle="collapse"
 							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
 							aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +38,7 @@ class AppNavbar extends React.Component {
 									<a className="dropdown-item" href="#">Special Offer</a>
 								</div>
 							</li> */}
-				
+
 						</ul>
 						{/* <form className="form-inline my-2 my-lg-0">
 							<input className="form-control mr-sm-2" type="search" placeholder="Search"
@@ -54,7 +54,7 @@ class AppNavbar extends React.Component {
 						</a>
 					</div>
 				</nav>
-			
+
     );
   }
 }

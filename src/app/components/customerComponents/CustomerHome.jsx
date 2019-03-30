@@ -9,9 +9,7 @@ class CustomerHome extends React.Component {
         <div>
             <Carousell></Carousell>
             <div className="container">
-            
-                <h4 className="product-title" style={{marginTop: "24px"}}>Products</h4>
-                <ProductListing></ProductListing> 
+                <ProductListing></ProductListing>
             </div>
         </div>
     );

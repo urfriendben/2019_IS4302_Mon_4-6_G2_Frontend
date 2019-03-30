@@ -38,16 +38,16 @@ class ProductListing extends React.Component {
         console.log(this.state.orders);
         var { error, isLoaded, orders} = this.state;
         if (error) {
-            return <div className="container"><div>Error: {error.message}</div></div>;
+            window.location.href = '404';
         } else if (!isLoaded) {
-            return <div className="container"><div>Loading...</div></div>;
-        } else {        
+            return <div className="container"><div style={{textAlign: 'center'}}>Loading...</div></div>;
+        } else {
             return (
                 <div>
                     {orders.map((item, index) => {
                         if(index % 3 == 0){
                             return (
-                                <div className="row" key={item.goodsId} style={{marginBottom: '20px',height: "350px"}}> 
+                                <div className="row" key={item.goodsId} style={{marginBottom: '20px',height: "350px"}}>
                                     <ProductListingItem item={orders[index]}></ProductListingItem>
                                     <ProductListingItem item={orders[index + 1]}></ProductListingItem>
                                     <ProductListingItem item={orders[index + 2]}></ProductListingItem>
