@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Axios from 'axios';
+import "sass/components/customerComponents/components.scss";
 class OrderListing extends React.Component {
     constructor(props) {
         super(props);
@@ -46,7 +46,7 @@ class OrderListing extends React.Component {
             return (
                 <div className="container">
                 <h3>View Order History</h3>
-                <input className="form-control mr-sm-2 quantity-input" type="text" onChange={this.handleChange}></input>
+                <input className="form-control mr-sm-2" style={{marginBottom:'20px'}} type="text" onChange={this.handleChange}></input>
                 <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => window.location.href = "/customer/order/" + this.state.orderId}> View</button>
                 </div>)
         }

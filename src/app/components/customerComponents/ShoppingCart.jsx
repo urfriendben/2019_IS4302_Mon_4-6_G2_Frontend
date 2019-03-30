@@ -85,8 +85,13 @@ class ShoppingCart extends React.Component {
     }
 
     render() {
+        const checkBox={
+            width: '18px',
+            height: '18px',
+            margin: '0 auto'
+        }
         this.clearPartialLSOrdered();
-        if(this.state.products.length == 0){
+        if(Object.keys(this.state.products).length == 0){
             return (
                 <div className="container">
                     <p>Your Shopping Cart is still empty!</p>
@@ -111,7 +116,7 @@ class ShoppingCart extends React.Component {
       }
 
 
-                <table className="table table-striped">
+                <table className="table table-striped shopping-cart-table" style={{marginBottom: '40px'}}>
                     <thead>
                     <tr>
                         <th>Select</th>
@@ -126,7 +131,7 @@ class ShoppingCart extends React.Component {
                             var p = this.state.products[k];
                             return (
                             <tr key={p.product.goodsId}>
-                                <td><input type="checkbox"  onChange={(e) => this.checkbox(p, e.target.checked)} className="form-check-input check-product" /></td>
+                                <td><input type="checkbox"  onChange={(e) => this.checkbox(p, e.target.checked)} className="form-check-input" style={checkBox}/></td>
                                 <td><a href={"product/"+p.product.goodsId}>{p.product.goodsId}</a></td>
                                 <td>{p.product.name}</td>
                                 <td>{p.quantity}</td>

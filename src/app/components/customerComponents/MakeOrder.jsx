@@ -91,22 +91,21 @@ class MakeOrder extends React.Component {
 
     render() {
         const { error, isLoaded, products } = this.state;
-        // if(products == null || products == 'undefined' || Object.keys(products).length == 0){
-        //     this.props.history.push(
-        //         {
-        //             pathname: `/customer/shoppingCart`,
-        //             error: 'Session expired! Please do not refresh the page while making the order.'
-        //         });
-        //         return null;
-        // }else{
+        if(products == null || products == 'undefined' || Object.keys(products).length == 0){
+            this.props.history.push(
+                {
+                    pathname: `/customer/shoppingCart`,
+                    error: 'Session expired! Please do not refresh the page while making the order.'
+                });
+                return null;
+        }else{
 
-        //     if (error) {
-        //         return <div className="container"><div>Error: {error.message}</div></div>;
-        //     } else {
+            if (error) {
+                return <div className="container"><div>Error: {error.message}</div></div>;
+            } else {
 
                 return (
                         <div className="container">
-                        <Loader></Loader>
                         { (error != null && error != 'undefined')
             ? <div className="alert alert-danger" role="alert">{error}</div>
             : <div></div>
@@ -124,8 +123,8 @@ class MakeOrder extends React.Component {
                         </div>
                         <button className="btn btn-outline-success my-2 my-sm-0 confirm-btn" onClick={() => this.confirm(this)} > Confirm Order</button>
                     </div>)
-            // }
-        // }
+            }
+        }
 
 
     }

@@ -58,6 +58,11 @@ class ProductDetail extends React.Component {
       }
 
     render() {
+        const inputStyle={
+                marginLeft: '27px',
+                display: 'inline-block',
+                width: '100px'
+        };
         console.log(this.state.productInfo);
         const { error, isLoaded, productInfo} = this.state;
         if (error) {
@@ -77,7 +82,7 @@ class ProductDetail extends React.Component {
                     
                     
                     <label>Quantity: </label>
-                        <input className="form-control mr-sm-2 quantity-input" placeholder="1" type="number" min="1" max={productInfo.length} onChange={this.handleChange}></input>
+                        <input className="form-control mr-sm-2" placeholder="1" type="number" min="1" max={productInfo.length} onChange={this.handleChange} style={inputStyle}></input>
                         <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.addItem(productInfo.goodsId, productInfo)} style={{marginLeft: '10px'}}> Add To Cart</button>
                     
                 </div>)
