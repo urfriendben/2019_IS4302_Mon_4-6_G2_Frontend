@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 class OrderListing extends React.Component {
     constructor(props) {
         super(props);
@@ -37,7 +38,16 @@ class OrderListing extends React.Component {
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {
-            return <div className="container"><div>Loading...</div></div>;
+            return <Modal isOpen={true} centered={true}>
+              <ModalBody>
+                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>
+                  <span>&nbsp;&nbsp;&nbsp;&nbsp;Loading... Please wait while we load your data...</span>
+                </div>
+              </ModalBody>
+            </Modal>
         } else {
             return (
                 <div className="container">
