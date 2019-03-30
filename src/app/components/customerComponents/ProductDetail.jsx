@@ -8,9 +8,9 @@ class ProductDetail extends React.Component {
             error: null,
             isLoaded: false,
             productInfo: this.props.match.params.productId,
-            quantity: 1, 
+            quantity: 1,
             supplierId: null,
-            
+
         };
     }
 
@@ -26,7 +26,7 @@ class ProductDetail extends React.Component {
                     this.setState({
                         isLoaded: true,
                         productInfo: result.data,
-                        supplierId: result.data.supplier.toString().split("#")[1], 
+                        supplierId: result.data.supplier.toString().split("#")[1],
                     });
                 },
                 // Note: it's important to handle errors here
@@ -71,20 +71,22 @@ class ProductDetail extends React.Component {
             return <div className="container"><div>Loading...</div></div>;
         } else {
             return (
-                <div className="container">
-                    <div>
-                        <h3>Product ID: {productInfo.goodsId}</h3>
-                        <p>Name: {productInfo.name}</p>
-                        <p>Type: {productInfo.type}</p>
-                        <p>Price: {productInfo.price}</p>
-                        <p>Supplier: {this.state.supplierId}</p>
+                <div className="container" style={{marginTop: '20px'}}>
+                  <div className="row">
+                    <div className="col-sm-5" style={{textAlign: 'right', borderRight: '1px solid #e1e1e1'}}>
+                        <h3>{productInfo.name}</h3>
+                        <p>Product ID: {productInfo.goodsId}</p>
                     </div>
-                    
-                    
-                    <label>Quantity: </label>
-                        <input className="form-control mr-sm-2" placeholder="1" type="number" min="1" max={productInfo.length} onChange={this.handleChange} style={inputStyle}></input>
-                        <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.addItem(productInfo.goodsId, productInfo)} style={{marginLeft: '10px'}}> Add To Cart</button>
-                    
+
+                    <div className="col-sm-7">
+                      <p>Type: {productInfo.type}</p>
+                      <p>Price: {productInfo.price}</p>
+                      <p>Supplier: {this.state.supplierId}</p>
+                      <label>Quantity: </label>
+                          <input className="form-control mr-sm-2" placeholder="1" type="number" min="1" max={productInfo.length} onChange={this.handleChange} style={inputStyle}></input>
+                          <button className="btn btn-outline-success my-2 my-sm-0" onClick={() => this.addItem(productInfo.goodsId, productInfo)} style={{marginLeft: '10px'}}> Add To Cart</button>
+                    </div>
+                  </div>
                 </div>)
         }
 
