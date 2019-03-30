@@ -112,7 +112,7 @@ class ProductForm extends React.Component {
               <Button color={action === 'IMPORT' ? 'info' : action === 'UPDATE' ? 'info' : 'danger'} onClick={this.toggle}>{action === 'IMPORT' ? 'Import' : action === 'UPDATE' ? 'Update' : 'Delete'}</Button>
             }
             <Modal isOpen={modal} toggle={this.toggle}>
-              <ModalHeader toggle={this.toggle}>{action === 'IMPORT' ? 'Import Quantity' : action === 'UPDATE' ? 'Update Product' : 'Delete Product'}</ModalHeader>
+              <ModalHeader toggle={this.toggle}>{action === 'IMPORT' ? 'Import Quantity' : action === 'UPDATE' ? 'Update Product' : action === 'DELETE' ? 'Delete Product' : 'Create Product'}</ModalHeader>
               <ModalBody>
                 <Form>
                   <FormGroup>
