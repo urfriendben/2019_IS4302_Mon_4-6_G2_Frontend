@@ -51,12 +51,12 @@ class AppNavbar extends React.Component {
     return (
 			<header>
 				<nav className="navbar navbar-expand-lg navbar-light bg-light">
-					<img height="70" src={logo}></img>
+					<img src={logo}></img>
           {
             // !loggedIn ?
             //   <a className="navbar-brand" href="/">Online Shopping Tool</a>
             // :
-              <a className="navbar-brand" href="/admin/auth">Online Shopping Tool</a>
+              <a className="navbar-brand" href="/admin/auth">{role === 'CUSTOMER' ? 'ShopEasy' : role}</a>
           }
 					<button className="navbar-toggler" type="button" data-toggle="collapse"
 							data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

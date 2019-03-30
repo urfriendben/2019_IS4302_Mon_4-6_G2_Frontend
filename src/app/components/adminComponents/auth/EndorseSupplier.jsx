@@ -80,7 +80,7 @@ class EndorseSupplier extends React.Component {
               </ModalBody>
               <ModalFooter>
                 <Button color="success" onClick={this.submit}>Endorse</Button>
-                <br/>
+                <div style={{height: '20px'}}/>
                 {error ? <Alert color={"danger"}>An error has occurred</Alert> : null}
               </ModalFooter>
             </Modal>

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Jumbotron } from 'reactstrap';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Alert, Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import Axios from 'axios';
 import { url } from 'enum.json';
+import logo from 'img/logo.png';
 
 class Login extends React.Component {
     username = '';
@@ -11,11 +12,12 @@ class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+          error: false
         };
     }
 
     LoginSubmit = () => {
+      let self = this;
       let history = this.props.history;
       Axios.post(url + '/login',
         {
@@ -31,13 +33,18 @@ class Login extends React.Component {
           history.push('/auth');
         }
       })
-
+      .catch(function(error) {
+        self.setState({
+          error: true
+        })
+      })
 
     }
 
     render() {
         return (
-          <div style={{height:'100vh',width:'100%',display:'flex',alignItems:'center',justifyContent:'center',overflow:'hidden'}}>
+          <div style={{height:'100vh',width:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',overflow:'hidden'}}>
+            <img style={{width: '30%'}} src={logo}/>
             <Jumbotron style={{width:'100%',borderRadius:0}}>
               <Form>
                 <FormGroup>
@@ -49,6 +56,8 @@ class Login extends React.Component {
                   <Input type="password" name="password" id="password" onChange={(e) => this.password = e.target.value} />
                 </FormGroup>
                 <Button onClick={this.LoginSubmit}>Submit</Button>
+                <div style={{height: '20px'}}/>
+                {this.state.error ? <Alert color="danger">Invalid Username or Password. Please try again.</Alert> : null}
               </Form>
             </Jumbotron>
           </div>

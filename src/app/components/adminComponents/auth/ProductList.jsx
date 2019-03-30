@@ -42,7 +42,7 @@ class ProductList extends React.Component {
         if (error) {
             return <div className="container"><div>Error: {error.message}</div></div>;
         } else if (!isLoaded) {
-            return <div className="container"><div>Loading...</div></div>;
+            return <div className="container"><div style={{textAlign: 'center'}}>Loading...</div></div>;
         } else {
             return (
                 <div className="container">

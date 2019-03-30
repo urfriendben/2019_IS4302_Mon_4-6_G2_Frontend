@@ -109,7 +109,7 @@ class ProductForm extends React.Component {
               ?
               <a className="dropdown-item" onClick={this.toggle}>Create</a>
               :
-              <Button color="primary" onClick={this.toggle}>{action === 'IMPORT' ? 'Import' : action === 'UPDATE' ? 'Update' : 'Delete'}</Button>
+              <Button color={action === 'IMPORT' ? 'info' : action === 'UPDATE' ? 'info' : 'danger'} onClick={this.toggle}>{action === 'IMPORT' ? 'Import' : action === 'UPDATE' ? 'Update' : 'Delete'}</Button>
             }
             <Modal isOpen={modal} toggle={this.toggle}>
               <ModalHeader toggle={this.toggle}>{action === 'IMPORT' ? 'Import Quantity' : action === 'UPDATE' ? 'Update Product' : 'Delete Product'}</ModalHeader>
@@ -139,7 +139,7 @@ class ProductForm extends React.Component {
               </ModalBody>
               <ModalFooter>
                 <Button color="success" onClick={this.submit}>{action === 'IMPORT' ? 'Import' : action === 'UPDATE' ? 'Update' : action === 'DELETE' ? 'Delete' : 'Create'}</Button>
-                <br/>
+                <div style={{height: '20px'}}/>
                 {error ? <Alert color="danger">An error has occurred</Alert> : null}
               </ModalFooter>
             </Modal>
