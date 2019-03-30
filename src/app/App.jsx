@@ -5,9 +5,6 @@ import AppNavbar from 'app/components/AppNavbar'
 import AppFooter from 'app/components/AppFooter'
 
 class App extends Component {
-  componentDidMount(){
-    document.title = "Customer App";
-  }
   render() {
     return (
       <div id="App">
