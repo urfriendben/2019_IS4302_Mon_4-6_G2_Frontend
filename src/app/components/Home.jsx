@@ -8,8 +8,8 @@ class Home extends React.Component {
     return (
         <div>
             <Carousell></Carousell>
-            <div className="container">
-                <p className="product-title">Products</p>
+            <div className="container" style={{marginTop: '30px'}}>
+                <p className="product-title" style={{ marginTop:'20px',marginBottom:'20px'}}>Products</p>
                 <ProductListing></ProductListing> 
             </div>
         </div>

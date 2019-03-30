@@ -47,7 +47,7 @@ class ProductListing extends React.Component {
                     {orders.map((item, index) => {
                         if(index % 3 == 0){
                             return (
-                                <div className="row" key={item.goodsId} style={{height: "350px"}}> 
+                                <div className="row" key={item.goodsId} style={{marginBottom: '20px',height: "350px"}}> 
                                     <ProductListingItem item={orders[index]}></ProductListingItem>
                                     <ProductListingItem item={orders[index + 1]}></ProductListingItem>
                                     <ProductListingItem item={orders[index + 2]}></ProductListingItem>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import 'sass/components/customerComponents/home.scss';
-import carousell1 from 'img/carousell1.jpg';
-import carousell2 from 'img/carousell2.jpeg';
+import carousell1 from 'img/carousell1.png';
+import carousell2 from 'img/carousell2.png';
 
 class Carousell extends React.Component {
   render() {
